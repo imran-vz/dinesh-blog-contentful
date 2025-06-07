@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
 
-import BlogLogo from "@icons/blog-logo.svg";
 import { LanguageSelector } from "@src/components/features/language-selector";
 import { Container } from "@src/components/shared/container";
 

@@ -95,7 +95,7 @@ export default async function Page({
 	});
 	const landingPage = pageLandingCollection?.items[0];
 	const blogPost = pageBlogPostCollection?.items[0];
-	const relatedPosts = blogPost?.relatedBlogPostsCollection?.items;
+
 	const isFeatured = Boolean(
 		blogPost?.slug && landingPage?.featuredBlogPost?.slug === blogPost.slug,
 	);
@@ -116,12 +116,6 @@ export default async function Page({
 			<Container className="mt-8 max-w-4xl">
 				<ArticleContent article={blogPost} />
 			</Container>
-			{relatedPosts && (
-				<Container className="mt-8 max-w-5xl">
-					<h2 className="mb-4 md:mb-6">{t("article.relatedArticles")}</h2>
-					<ArticleTileGrid className="md:grid-cols-2" articles={relatedPosts} />
-				</Container>
-			)}
 		</>
 	);
 }

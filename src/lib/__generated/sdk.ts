@@ -865,7 +865,6 @@ export type PageBlogPost = Entry & _Node & {
   internalName?: Maybe<Scalars['String']['output']>;
   linkedFrom?: Maybe<PageBlogPostLinkingCollections>;
   publishedDate?: Maybe<Scalars['DateTime']['output']>;
-  relatedBlogPostsCollection?: Maybe<PageBlogPostRelatedBlogPostsCollection>;
   seoFields?: Maybe<ComponentSeo>;
   shortDescription?: Maybe<Scalars['String']['output']>;
   slug?: Maybe<Scalars['String']['output']>;
@@ -910,17 +909,6 @@ export type PageBlogPostLinkedFromArgs = {
 /** To create individual blog posts [See type definition](https://app.contentful.com/spaces/osaf3xr54hmi/content_types/pageBlogPost) */
 export type PageBlogPostPublishedDateArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** To create individual blog posts [See type definition](https://app.contentful.com/spaces/osaf3xr54hmi/content_types/pageBlogPost) */
-export type PageBlogPostRelatedBlogPostsCollectionArgs = {
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  locale?: InputMaybe<Scalars['String']['input']>;
-  order?: InputMaybe<Array<InputMaybe<PageBlogPostRelatedBlogPostsCollectionOrder>>>;
-  preview?: InputMaybe<Scalars['Boolean']['input']>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<PageBlogPostFilter>;
 };
 
 
@@ -1031,8 +1019,6 @@ export type PageBlogPostFilter = {
   publishedDate_lte?: InputMaybe<Scalars['DateTime']['input']>;
   publishedDate_not?: InputMaybe<Scalars['DateTime']['input']>;
   publishedDate_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
-  relatedBlogPosts?: InputMaybe<CfPageBlogPostNestedFilter>;
-  relatedBlogPostsCollection_exists?: InputMaybe<Scalars['Boolean']['input']>;
   seoFields?: InputMaybe<CfComponentSeoNestedFilter>;
   seoFields_exists?: InputMaybe<Scalars['Boolean']['input']>;
   shortDescription?: InputMaybe<Scalars['String']['input']>;
@@ -1062,7 +1048,6 @@ export type PageBlogPostFilter = {
 export type PageBlogPostLinkingCollections = {
   __typename?: 'PageBlogPostLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
-  pageBlogPostCollection?: Maybe<PageBlogPostCollection>;
   pageLandingCollection?: Maybe<PageLandingCollection>;
 };
 
@@ -1075,15 +1060,6 @@ export type PageBlogPostLinkingCollectionsEntryCollectionArgs = {
 };
 
 
-export type PageBlogPostLinkingCollectionsPageBlogPostCollectionArgs = {
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  locale?: InputMaybe<Scalars['String']['input']>;
-  order?: InputMaybe<Array<InputMaybe<PageBlogPostLinkingCollectionsPageBlogPostCollectionOrder>>>;
-  preview?: InputMaybe<Scalars['Boolean']['input']>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
 export type PageBlogPostLinkingCollectionsPageLandingCollectionArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   locale?: InputMaybe<Scalars['String']['input']>;
@@ -1091,25 +1067,6 @@ export type PageBlogPostLinkingCollectionsPageLandingCollectionArgs = {
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
 };
-
-export enum PageBlogPostLinkingCollectionsPageBlogPostCollectionOrder {
-  InternalNameAsc = 'internalName_ASC',
-  InternalNameDesc = 'internalName_DESC',
-  PublishedDateAsc = 'publishedDate_ASC',
-  PublishedDateDesc = 'publishedDate_DESC',
-  SlugAsc = 'slug_ASC',
-  SlugDesc = 'slug_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
-  TitleAsc = 'title_ASC',
-  TitleDesc = 'title_DESC'
-}
 
 export enum PageBlogPostLinkingCollectionsPageLandingCollectionOrder {
   InternalNameAsc = 'internalName_ASC',
@@ -1125,33 +1082,6 @@ export enum PageBlogPostLinkingCollectionsPageLandingCollectionOrder {
 }
 
 export enum PageBlogPostOrder {
-  InternalNameAsc = 'internalName_ASC',
-  InternalNameDesc = 'internalName_DESC',
-  PublishedDateAsc = 'publishedDate_ASC',
-  PublishedDateDesc = 'publishedDate_DESC',
-  SlugAsc = 'slug_ASC',
-  SlugDesc = 'slug_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
-  TitleAsc = 'title_ASC',
-  TitleDesc = 'title_DESC'
-}
-
-export type PageBlogPostRelatedBlogPostsCollection = {
-  __typename?: 'PageBlogPostRelatedBlogPostsCollection';
-  items: Array<Maybe<PageBlogPost>>;
-  limit: Scalars['Int']['output'];
-  skip: Scalars['Int']['output'];
-  total: Scalars['Int']['output'];
-};
-
-export enum PageBlogPostRelatedBlogPostsCollectionOrder {
   InternalNameAsc = 'internalName_ASC',
   InternalNameDesc = 'internalName_DESC',
   PublishedDateAsc = 'publishedDate_ASC',
@@ -1666,7 +1596,6 @@ export type CfPageBlogPostNestedFilter = {
   publishedDate_lte?: InputMaybe<Scalars['DateTime']['input']>;
   publishedDate_not?: InputMaybe<Scalars['DateTime']['input']>;
   publishedDate_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
-  relatedBlogPostsCollection_exists?: InputMaybe<Scalars['Boolean']['input']>;
   seoFields_exists?: InputMaybe<Scalars['Boolean']['input']>;
   shortDescription?: InputMaybe<Scalars['String']['input']>;
   shortDescription_contains?: InputMaybe<Scalars['String']['input']>;
@@ -1722,10 +1651,7 @@ export type PageBlogPostFieldsFragment = { __typename: 'PageBlogPost', internalN
         ) | { __typename?: 'ComponentSeo' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageLanding' } | (
           { __typename?: 'RichVideo' }
           & RichVideoFieldsFragment
-        ) | null> } } } | null, relatedBlogPostsCollection?: { __typename?: 'PageBlogPostRelatedBlogPostsCollection', items: Array<(
-      { __typename?: 'PageBlogPost' }
-      & ReferencePageBlogPostFieldsFragment
-    ) | null> } | null };
+        ) | null> } } } | null };
 
 export type PageBlogPostQueryVariables = Exact<{
   slug: Scalars['String']['input'];
@@ -1893,25 +1819,6 @@ export const RichVideoFieldsFragmentDoc = gql`
   }
 }
     `;
-export const ReferencePageBlogPostFieldsFragmentDoc = gql`
-    fragment ReferencePageBlogPostFields on PageBlogPost {
-  __typename
-  sys {
-    id
-    spaceId
-  }
-  slug
-  author {
-    ...AuthorFields
-  }
-  publishedDate
-  title
-  shortDescription
-  featuredImage {
-    ...ImageFields
-  }
-}
-    `;
 export const PageBlogPostFieldsFragmentDoc = gql`
     fragment PageBlogPostFields on PageBlogPost {
   __typename
@@ -1944,10 +1851,24 @@ export const PageBlogPostFieldsFragmentDoc = gql`
       }
     }
   }
-  relatedBlogPostsCollection(limit: 2) {
-    items {
-      ...ReferencePageBlogPostFields
-    }
+}
+    `;
+export const ReferencePageBlogPostFieldsFragmentDoc = gql`
+    fragment ReferencePageBlogPostFields on PageBlogPost {
+  __typename
+  sys {
+    id
+    spaceId
+  }
+  slug
+  author {
+    ...AuthorFields
+  }
+  publishedDate
+  title
+  shortDescription
+  featuredImage {
+    ...ImageFields
   }
 }
     `;
@@ -2005,8 +1926,7 @@ ${ImageFieldsFragmentDoc}
 ${AuthorFieldsFragmentDoc}
 ${RichImageFieldsFragmentDoc}
 ${RichVideoFieldsFragmentDoc}
-${VideoFieldsFragmentDoc}
-${ReferencePageBlogPostFieldsFragmentDoc}`;
+${VideoFieldsFragmentDoc}`;
 export const PageBlogPostCollectionDocument = gql`
     query pageBlogPostCollection($locale: String, $preview: Boolean, $limit: Int, $order: [PageBlogPostOrder], $where: PageBlogPostFilter) {
   pageBlogPostCollection(
@@ -2027,8 +1947,7 @@ ${ImageFieldsFragmentDoc}
 ${AuthorFieldsFragmentDoc}
 ${RichImageFieldsFragmentDoc}
 ${RichVideoFieldsFragmentDoc}
-${VideoFieldsFragmentDoc}
-${ReferencePageBlogPostFieldsFragmentDoc}`;
+${VideoFieldsFragmentDoc}`;
 export const PageLandingDocument = gql`
     query pageLanding($locale: String, $preview: Boolean) {
   pageLandingCollection(limit: 1, locale: $locale, preview: $preview) {
