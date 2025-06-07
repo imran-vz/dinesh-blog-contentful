@@ -1,0 +1,87 @@
+{
+  "name": "template-blog-webapp-nextjs",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=22",
+    "npm": "Please use pnpm",
+    "pnpm": ">=10.11.1"
+  },
+  "scripts": {
+    "prepare": "husky install",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "type-check": "tsc --noEmit",
+    "graphql-codegen:generate": "graphql-codegen -r dotenv/config --config codegen.ts",
+    "graphql-codegen:watch": "graphql-codegen --watch -r dotenv/config --config codegen.ts",
+    "setup": "./bin/setup.sh"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "eslint --quiet --fix"
+    ],
+    "src/**/*.{json,js,ts,jsx,tsx}": [
+      "prettier --write"
+    ]
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@contentful/f36-icons": "4.29.0",
+    "@contentful/f36-tokens": "4.2.0",
+    "@contentful/live-preview": "4.6.20",
+    "@contentful/rich-text-react-renderer": "16.0.1",
+    "@next/bundle-analyzer": "15.3.3",
+    "dotenv": "16.5.0",
+    "graphql": "16.11.0",
+    "graphql-request": "^7.2.0",
+    "graphql-tag": "^2.12.6",
+    "i18next-browser-languagedetector": "8.1.0",
+    "i18next-resources-to-backend": "1.2.1",
+    "next": "14.2.29",
+    "next-compose-plugins": "2.2.1",
+    "next-i18n-router": "5.5.2",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-focus-lock": "2.13.6",
+    "react-i18next": "15.5.2",
+    "sharp": "0.34.2"
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "7.27.5",
+    "@contentful/rich-text-types": "17.0.0",
+    "@graphql-codegen/cli": "5.0.7",
+    "@graphql-codegen/client-preset": "4.8.2",
+    "@graphql-codegen/introspection": "4.0.3",
+    "@graphql-codegen/typescript-graphql-request": "6.3.0",
+    "@svgr/webpack": "8.1.0",
+    "@tailwindcss/typography": "0.5.16",
+    "@types/negotiator": "0.6.4",
+    "@types/node": "22.15.30",
+    "@types/react": "18.3.23",
+    "@types/react-dom": "18.3.7",
+    "@typescript-eslint/eslint-plugin": "8.33.1",
+    "@typescript-eslint/parser": "8.33.1",
+    "autoprefixer": "10.4.21",
+    "eslint": "8.57.1",
+    "eslint-config-next": "15.3.3",
+    "eslint-config-prettier": "10.1.5",
+    "eslint-import-resolver-typescript": "4.4.3",
+    "eslint-plugin-import": "2.31.0",
+    "eslint-plugin-prettier": "5.4.1",
+    "eslint-plugin-react": "7.37.5",
+    "eslint-plugin-react-hooks": "4.6.2",
+    "husky": "9.1.7",
+    "i18next": "25.2.1",
+    "i18next-http-backend": "3.0.2",
+    "lint-staged": "16.1.0",
+    "postcss": "8.5.4",
+    "prettier": "3.5.3",
+    "prettier-plugin-tailwindcss": "0.6.12",
+    "tailwind-merge": "3.3.0",
+    "tailwindcss": "3.4.17",
+    "typescript": "5.8.3"
+  },
+  "packageManager": "pnpm@10.11.1"
+}

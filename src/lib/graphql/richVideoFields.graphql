@@ -1,0 +1,10 @@
+fragment RichVideoFields on RichVideo {
+  __typename
+  internalName
+  sys {
+    id
+  }
+  video {
+    ...VideoFields
+  }
+}

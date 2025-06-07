@@ -1,0 +1,13 @@
+
+fragment VideoFields on Asset {
+  __typename
+  sys {
+    id
+  }
+  title
+  description
+  width
+  height
+  url
+  contentType
+}
