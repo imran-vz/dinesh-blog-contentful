@@ -1,13 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import {
-	ArticleContent,
-	ArticleHero,
-	ArticleTileGrid,
-} from "@src/components/features/article";
+import { ArticleContent, ArticleHero } from "@src/components/features/article";
 import { Container } from "@src/components/shared/container";
-import initTranslations from "@src/i18n";
 import { defaultLocale, locales } from "@src/i18n/config";
 import { client } from "@src/lib/client";
 
@@ -85,7 +80,6 @@ export default async function Page({
 	params: { locale, slug },
 }: BlogPageProps) {
 	const gqlClient = client;
-	const { t } = await initTranslations({ locale });
 	const { pageBlogPostCollection } = await gqlClient.pageBlogPost({
 		locale,
 		slug,
