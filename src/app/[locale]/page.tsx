@@ -2,12 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { ArticleHero, ArticleTileGrid } from "@src/components/features/article";
+import { ArticleHero } from "@src/components/features/article";
 import { Container } from "@src/components/shared/container";
 import TranslationsProvider from "@src/components/shared/i18n/TranslationProvider";
 import initTranslations from "@src/i18n";
 import { defaultLocale, locales } from "@src/i18n/config";
-import { PageBlogPostOrder } from "@src/lib/__generated/sdk";
 import { client } from "@src/lib/client";
 
 interface LandingPageProps {
@@ -50,7 +49,7 @@ export async function generateMetadata({
 }
 
 export default async function Page({ params: { locale } }: LandingPageProps) {
-	const { t, resources } = await initTranslations({ locale });
+	const { resources } = await initTranslations({ locale });
 	const gqlClient = client;
 
 	const landingPageData = await gqlClient.pageLanding({ locale });
@@ -60,18 +59,8 @@ export default async function Page({ params: { locale } }: LandingPageProps) {
 		notFound();
 	}
 
-	const blogPostsData = await gqlClient.pageBlogPostCollection({
-		limit: 6,
-		locale,
-		order: PageBlogPostOrder.PublishedDateDesc,
-		where: {
-			slug_not: page?.featuredBlogPost?.slug,
-		},
-	});
-	const posts = blogPostsData.pageBlogPostCollection?.items;
-
-	if (!page?.featuredBlogPost || !posts) {
-		return;
+	if (!page?.featuredBlogPost) {
+		return null;
 	}
 
 	return (
@@ -80,14 +69,6 @@ export default async function Page({ params: { locale } }: LandingPageProps) {
 				<Link href={`/${page.featuredBlogPost.slug}`}>
 					<ArticleHero article={page.featuredBlogPost} />
 				</Link>
-			</Container>
-
-			<Container className="my-8  md:mb-10 lg:mb-16">
-				<h2 className="mb-4 md:mb-6">{t("landingPage.latestArticles")}</h2>
-				<ArticleTileGrid
-					className="md:grid-cols-2 lg:grid-cols-3"
-					articles={posts}
-				/>
 			</Container>
 		</TranslationsProvider>
 	);
